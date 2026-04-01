@@ -1,0 +1,26 @@
+# Storing prices in a Tuple
+price_input = input("Enter prices of items sold today (separated by space): ")
+prices = tuple(float(x) for x in price_input.split())
+
+if prices:
+    # a) Print total number of items sold
+    print(f"Total items sold: {len(prices)}")
+
+    # b) Print price of cheapest item
+    print(f"Cheapest item: {min(prices)}")
+
+    # c) Print price of costliest item
+    costliest = max(prices)
+    print(f"Costliest item: {costliest}")
+
+    # d) Print price list in ascending order
+    # sorted() returns a new list, leaving the original tuple intact
+    print(f"Price list in ascending order: {sorted(prices)}")
+
+    # e) Print the number of costliest items sold
+    # This counts how many times the maximum price appears
+    count_costliest = prices.count(costliest)
+    print(f"Number of costliest items sold: {count_costliest}")
+else:
+    print("No items were sold today.")
+    
