@@ -1,0 +1,28 @@
+import pandas as pd
+
+data = {
+    'title': ['Python Basics', 'Data Science', 'Machine Learning', 'Deep Learning', 'Algorithm Design'],
+    'author': ['John Doe', 'Jane Smith', 'John Doe', 'Alice Wong', 'Jane Smith'],
+    'edition': ['2nd', '1st', '3rd', '1st', '4th'],
+    'year': [2018, 2021, 2015, 2023, 2019],
+    'publisher': ['TechPress', 'DataHouse', 'TechPress', 'AI-Books', 'DataHouse'],
+    'price': [450, 800, 1200, 1500, 700]
+}
+pd.DataFrame(data).to_csv('books.csv', index=False)
+
+df = pd.read_csv('books.csv')
+
+print("COMPLETE REPORT")
+print(df.to_string())
+
+search_author = input("\nEnter Author Name: ")
+print(df[df['author'] == search_author])
+
+search_pub = input("\nEnter Publishing House: ")
+print(df[df['publisher'] == search_pub])
+
+print(f"\nCheapest: {df.loc[df['price'].idxmin(), 'title']}")
+print(f"Costliest: {df.loc[df['price'].idxmax(), 'title']}")
+
+print("\nSORTED BY YEAR")
+print(df.sort_values(by='year'))
