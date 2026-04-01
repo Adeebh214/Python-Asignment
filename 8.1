@@ -1,0 +1,16 @@
+# Step 1: Create a dummy file to read (for demonstration)
+with open("source.txt", "w") as f:
+    f.write("Hello world!\nThis is a test file for file handling.")
+
+# Step 2: Read from source and write to destination in uppercase
+try:
+    with open("source.txt", "r") as input_file:
+        content = input_file.read()
+    
+    with open("upper_destination.txt", "w") as output_file:
+        output_file.write(content.upper())
+        
+    print("File copied and converted to uppercase successfully.")
+except FileNotFoundError:
+    print("Error: The source file was not found.")
+    
