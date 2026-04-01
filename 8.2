@@ -1,0 +1,35 @@
+import os
+
+source_name = input("Enter the source Python file name (e.g., script.py): ")
+dest_name = input("Enter the destination file name: ")
+
+if not os.path.exists(source_name):
+    print("Source file does not exist!")
+else:
+    # Processing the file
+    with open(source_name, "r") as src, open(dest_name, "w") as dest:
+        for line in src:
+            # Strip whitespace to check for comments at the start
+            stripped_line = line.lstrip()
+            
+            # Skip lines that are purely comments
+            if stripped_line.startswith("#") or stripped_line == "":
+                continue
+            
+            # Remove inline comments (part of the line after #)
+            # We split by # and take the first part
+            clean_line = line.split("#")[0].rstrip()
+            
+            # Write the clean line if it's not empty
+            if clean_line:
+                dest.write(clean_line + "\n")
+
+    # Printing contents of both files
+    print("\n" + "="*20 + " SOURCE FILE " + "="*20)
+    with open(source_name, "r") as f:
+        print(f.read())
+
+    print("\n" + "="*20 + " DESTINATION (No Comments) " + "="*20)
+    with open(dest_name, "r") as f:
+        print(f.read())
+        
