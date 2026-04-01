@@ -1,0 +1,16 @@
+def capitalize_lines():
+    lines = []
+    print("Enter your sentences (Press Enter on an empty line to finish):")
+    
+    while True:
+        user_input = input()
+        if user_input == "":
+            break
+        lines.append(user_input.upper())
+    
+    print("\nOutput:")
+    for line in lines:
+        print(line)
+
+# Call the function
+capitalize_lines()
