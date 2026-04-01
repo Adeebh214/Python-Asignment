@@ -1,0 +1,23 @@
+import pandas as pd
+
+# Creating sample excel for demonstration
+emp_data = {
+    'Employee ID': [101, 102, 103, 104, 105],
+    'Employee Name': ['Amit', 'Sita', 'Rahul', 'Priya', 'John'],
+    'Department': ['IT', 'HR', 'Sales', 'IT', 'Finance'],
+    'Designation': ['Developer', 'Manager', 'Analyst', 'Developer', 'Clerk'],
+    'Domain': ['Automotive', 'Banking', 'Automotive', 'Retail', 'Insurance']
+}
+pd.DataFrame(emp_data).to_excel('employee.xlsx', index=False)
+
+df_emp = pd.read_excel('employee.xlsx')
+
+print("Employees in Automotive Domain:")
+print(df_emp[df_emp['Domain'] == 'Automotive'])
+
+search_id = int(input("Enter Employee ID to search: "))
+print(f"\nDetails for ID {search_id}:")
+print(df_emp[df_emp['Employee ID'] == search_id])
+
+print("\nList of all Developers:")
+print(df_emp[df_emp['Designation'] == 'Developer'])
