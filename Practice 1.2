@@ -1,0 +1,44 @@
+class Vendor:
+    def __init__(self, name, year, contact, email):
+        self.name = name
+        self.year = year
+        self.contact = contact
+        self.email = email
+        self.monthly_purchases = []
+
+    def get_monthly_data(self):
+        months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+        for month in months:
+            amount = float(input(f"Enter purchase amount for {month}: "))
+            self.monthly_purchases.append(amount)
+
+    def generate_annual_report(self):
+        total_purchase = sum(self.monthly_purchases)
+        avg_purchase = total_purchase / 12
+        
+        print("\n" + "=" * 40)
+        print("ANNUAL PURCHASE REPORT")
+        print("=" * 40)
+        print(f"Vendor Name: {self.name}")
+        print(f"Association Since: {self.year}")
+        print(f"Contact: {self.contact}")
+        print(f"Email: {self.email}")
+        print("-" * 40)
+        
+        months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+        for m, a in zip(months, self.monthly_purchases):
+            print(f"{m}: {a}")
+            
+        print("-" * 40)
+        print(f"Total Annual Purchase: {total_purchase}")
+        print(f"Average Monthly Purchase: {avg_purchase:.2f}")
+        print("=" * 40)
+
+v_name = input("Vendor Name: ")
+v_year = input("Year of Association: ")
+v_con = input("Contact Number: ")
+v_mail = input("Email ID: ")
+
+v = Vendor(v_name, v_year, v_con, v_mail)
+v.get_monthly_data()
+v.generate_annual_report()
