@@ -1,0 +1,42 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+recruit_data = {
+    'Company': ['Microsoft', 'Google', 'Amazon', 'IBM', 'Deloitte', 'Capgemini', 'ATOS Origin', 'Amdocs'],
+    'Recruitments': [1500, 1800, 2200, 1300, 1100, 950, 600, 750]
+}
+rdf = pd.DataFrame(recruit_data)
+rdf.to_csv('recruitment_data.csv', index=False)
+
+plt.bar(rdf['Company'], rdf['Recruitments'], color='skyblue')
+plt.xticks(rotation=45)
+plt.title('New Recruitments Bar Chart')
+plt.ylabel('Number of Recruitments')
+plt.savefig('la2_a.png')
+plt.close()
+
+plt.pie(rdf['Recruitments'], labels=rdf['Company'], autopct='%1.1f%%')
+plt.title('New Recruitments Pie Chart')
+plt.savefig('la2_b.png')
+plt.close()
+
+explode = [0.1 if c == 'Amazon' else 0 for c in rdf['Company']]
+plt.pie(rdf['Recruitments'], labels=rdf['Company'], autopct='%1.1f%%', explode=explode, shadow=True)
+plt.title('Customized Pie Chart (Exploded)')
+plt.savefig('la2_c.png')
+plt.close()
+
+plt.pie(rdf['Recruitments'], labels=rdf['Company'], autopct='%1.1f%%', pctdistance=0.85)
+centre_circle = plt.Circle((0,0), 0.70, fc='white')
+fig = plt.gcf()
+fig.gca().add_artist(centre_circle)
+plt.title('New Recruitments Doughnut Chart')
+plt.savefig('la2_d.png')
+plt.close()
+
+subset = rdf[rdf['Company'].isin(['IBM', 'Amdocs'])]
+plt.bar(subset['Company'], subset['Recruitments'], color=['blue', 'orange'])
+plt.title('IBM vs Amdocs Recruitment Comparison')
+plt.ylabel('Count')
+plt.savefig('la2_comp.png')
+plt.close()
