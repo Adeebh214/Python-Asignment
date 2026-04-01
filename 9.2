@@ -1,0 +1,67 @@
+class Book:
+    def __init__(self, title, author):
+        self.title = title
+        self.author = author
+        self.is_lent = False
+
+class Member:
+    def __init__(self, name, member_id):
+        self.name = name
+        self.member_id = member_id
+
+class Library:
+    def __init__(self):
+        self.books = []
+        self.members = []
+
+    def add_book(self):
+        title = input("Enter Book Title: ")
+        author = input("Enter Author: ")
+        self.books.append(Book(title, author))
+        print("Book added successfully!")
+
+    def add_member(self):
+        name = input("Enter Member Name: ")
+        mid = input("Enter Member ID: ")
+        self.members.append(Member(name, mid))
+        print("Member registered!")
+
+    def lend_book(self):
+        btitle = input("Enter Book Title to lend: ")
+        for book in self.books:
+            if book.title == btitle and not book.is_lent:
+                book.is_lent = True
+                print(f"Book '{btitle}' lent successfully.")
+                return
+        print("Book not available or already lent.")
+
+    def return_book(self):
+        btitle = input("Enter Book Title to return: ")
+        for book in self.books:
+            if book.title == btitle and book.is_lent:
+                book.is_lent = False
+                print(f"Book '{btitle}' returned.")
+                return
+        print("Invalid return request.")
+
+    def display_books(self):
+        print("\n--- Library Collection ---")
+        for book in self.books:
+            status = "Lent" if book.is_lent else "Available"
+            print(f"Title: {book.title} | Author: {book.author} | Status: {status}")
+
+# Menu-driven Interface
+lib = Library()
+while True:
+    print("\n--- LIBRARY MENU ---")
+    print("1. Add Book\n2. Add Member\n3. Lend Book\n4. Return Book\n5. Display Books\n6. Exit")
+    choice = input("Select an option: ")
+
+    if choice == '1': lib.add_book()
+    elif choice == '2': lib.add_member()
+    elif choice == '3': lib.lend_book()
+    elif choice == '4': lib.return_book()
+    elif choice == '5': lib.display_books()
+    elif choice == '6': break
+    else: print("Invalid choice!")
+    
