@@ -1,0 +1,38 @@
+class Employee:
+    def __init__(self, name, emp_id, dept, basic_salary):
+        self.name = name
+        self.emp_id = emp_id
+        self.dept = dept
+        self.basic_salary = basic_salary
+
+    def generate_salary_slip(self):
+        da = 0.92 * self.basic_salary
+        hra = 0.58 * self.basic_salary
+        ta = 0.30 * self.basic_salary
+        lic_deduction = 500
+        
+        gross_salary = self.basic_salary + da + hra + ta
+        net_salary = gross_salary - lic_deduction
+        
+        print("-" * 30)
+        print(f"Salary Slip for: {self.name}")
+        print(f"Employee ID: {self.emp_id}")
+        print(f"Department: {self.dept}")
+        print("-" * 30)
+        print(f"Basic Salary: {self.basic_salary}")
+        print(f"DA (92%): {da}")
+        print(f"HRA (58%): {hra}")
+        print(f"TA (30%): {ta}")
+        print(f"LIC Deduction: {lic_deduction}")
+        print("-" * 30)
+        print(f"Gross Salary: {gross_salary}")
+        print(f"Net Salary: {net_salary}")
+        print("-" * 30)
+
+name = input("Enter Name: ")
+eid = input("Enter ID: ")
+dept = input("Enter Dept: ")
+basic = float(input("Enter Basic Salary: "))
+
+emp = Employee(name, eid, dept, basic)
+emp.generate_salary_slip()
