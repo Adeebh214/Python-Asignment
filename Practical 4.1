@@ -1,0 +1,26 @@
+import numpy as np
+
+# a) Generate a 4x4 identity matrix
+identity_matrix = np.eye(4)
+print("4x4 Identity Matrix:")
+print(identity_matrix)
+print("-" * 30)
+
+# b) Generate two 3x3 matrices with random integers (1 to 9)
+matrix_a = np.random.randint(1, 10, (3, 3))
+matrix_b = np.random.randint(1, 10, (3, 3))
+
+print("Matrix A:")
+print(matrix_a)
+print("\nMatrix B:")
+print(matrix_b)
+
+# Matrix Addition
+addition_result = matrix_a + matrix_b
+print("\nMatrix Addition Result:")
+print(addition_result)
+
+# Matrix Multiplication (Dot Product)
+multiplication_result = np.dot(matrix_a, matrix_b)
+print("\nMatrix Multiplication Result:")
+print(multiplication_result)
